@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "blog-bubbles-api"
+version = "0.1.0"
+description = ""
+authors = ["Rohit Jha <me@rjha.dev>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.67.0"
+manage-fastapi = "^1.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pytest-cov = "^2.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
