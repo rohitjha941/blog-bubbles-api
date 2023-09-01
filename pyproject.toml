@@ -6,8 +6,11 @@ authors = ["Rohit Jha <me@rjha.dev>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-fastapi = "^0.67.0"
-manage-fastapi = "^1.1.1"
+fastapi = "^0.103.0"
+uvicorn = "^0.23.2"
+pydantic = "^2.3.0"
+python-dotenv = "^1.0.0"
+pydantic-settings = "^2.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
