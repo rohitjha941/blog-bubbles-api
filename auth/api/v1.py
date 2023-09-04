@@ -13,7 +13,6 @@ router = APIRouter(
 async def login(data: schemas.LoginSchema):
     user = await helpers.validatePassword(data.password, data.email)
     return helpers.returnUser(user)
-    # return "Hello"
 
 
 @router.post("/register")
@@ -24,7 +23,10 @@ async def register(data: schemas.RegisterSchema):
     if data.password1 != data.password2:
         raise HTTPException(
             status_code=400,
-            detail="Passwords does not matches",
+            detail=[{
+                "type":"incorrect_password",
+                "msg":"Passwords does not matches"
+            }]
         )
     user = await User.create(
         email=data.email, password=helpers.generateHash(data.password1)
