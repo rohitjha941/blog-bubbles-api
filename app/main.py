@@ -4,6 +4,7 @@ from tortoise.contrib.fastapi import register_tortoise
 from app.core.config import settings
 
 from auth.models import *
+from data.models import *
 from auth.api import v1
 
 def get_application():
@@ -37,7 +38,7 @@ def get_application():
         },
         'apps': {
             'models': {
-                'models': ["auth.models.all"],
+                'models': ["auth.models.all", "data.models.all"],
                 'default_connection': 'default',
             }
         }
