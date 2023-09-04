@@ -7,8 +7,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=app
+      - PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+
     ports:
       - '5432:5432'
+    volumes:
+      - 
   app:
     build: .
     env_file:
@@ -19,3 +25,6 @@ services:
       - database
     volumes:
       - .:/app
+    
+volumes:
+    postgres:
