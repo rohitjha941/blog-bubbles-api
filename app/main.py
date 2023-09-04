@@ -27,7 +27,7 @@ def get_application():
             'default': {
                 'engine': 'tortoise.backends.asyncpg',
                 'credentials': {
-                    'host': 'databse',
+                    'host': 'database',
                     'port': '5432',
                     'user': 'postgres',
                     'password': 'postgres',
