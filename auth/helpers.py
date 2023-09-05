@@ -59,6 +59,9 @@ def returnUser(user):
 
 
 async def validateToken(token: str = Header(None)):
+    if(token is None or token == "" ):
+        raise exceptions.credentialsException
+
     try:
         payload = helpers.jwtDecodetoken(token)
         email: str = payload.get("email")
