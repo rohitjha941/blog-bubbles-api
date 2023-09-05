@@ -42,7 +42,8 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
             position_id=data.identifier_id,
             user_id=user.id,
             url_id=url['id'],  
-            comment=data.comment
+            comment=data.comment,
+            anchor_text=data.anchor_text
         )
         return "ok"
 
@@ -83,3 +84,10 @@ async def identifier_get(url: str):
     url = url.__dict__
     pd = await PositionalData.filter(url_id=url['id'])
     return pd
+
+@router.get("/comments_by_url")
+async def comments_by_url_get(schema: schemas.UrlsSchema):
+    url = await Urls.get(link = schema.link)
+    url = url.__dict__
+    comments = await Comments.filter(url_id=url['id'])
+    return comments

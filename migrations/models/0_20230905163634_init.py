@@ -24,22 +24,23 @@ CREATE TABLE IF NOT EXISTS "user" (
     "name" VARCHAR(255) NOT NULL  DEFAULT 'John Doe'
 );
 COMMENT ON TABLE "user" IS 'The User model, This is the table used to store auth credentails';
+CREATE TABLE IF NOT EXISTS "comments" (
+    "id" SERIAL NOT NULL PRIMARY KEY,
+    "created_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
+    "modified_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
+    "position_id" INT NOT NULL,
+    "user_id" INT NOT NULL,
+    "url_id" INT NOT NULL,
+    "comment" TEXT NOT NULL,
+    "status" BOOL NOT NULL  DEFAULT True,
+    "archor_text" TEXT NOT NULL
+);
 CREATE TABLE IF NOT EXISTS "positionaldata" (
     "id" SERIAL NOT NULL PRIMARY KEY,
     "created_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
     "modified_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
     "identifier" JSONB NOT NULL,
     "url_id" INT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS "comments" (
-    "id" SERIAL NOT NULL PRIMARY KEY,
-    "created_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
-    "modified_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
-    "user_id" INT NOT NULL,
-    "url_id" INT NOT NULL,
-    "comment" TEXT NOT NULL,
-    "status" BOOL NOT NULL  DEFAULT True,
-    "position_id_id" INT NOT NULL REFERENCES "positionaldata" ("id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "urls" (
     "id" SERIAL NOT NULL PRIMARY KEY,

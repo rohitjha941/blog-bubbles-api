@@ -10,6 +10,9 @@ class PositionalDataWithCommentsSchema(BaseModel):
     url: str
     comment: str
     identifier_id: Optional[int] = None
+    anchor_text: Optional[str] = None
 
 class PositionalDataSchema(BaseModel):
     comments: str
+
+c
