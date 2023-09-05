@@ -9,7 +9,6 @@ class PositionalDataWithCommentsSchema(BaseModel):
     identifier: dict
     url: str
     comment: str
-    identifier_id: Optional[int] = None
 
 class PositionalDataSchema(BaseModel):
     comments: str
