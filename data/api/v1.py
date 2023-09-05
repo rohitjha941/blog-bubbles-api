@@ -47,7 +47,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         )
         return "ok"
 
-    print(data.identifier_id)
+    # print(data.identifier_id)
 
     pd = await PositionalData.create(
         identifier=data.identifier,
@@ -59,7 +59,8 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         position_id=pd['id'],
         user_id=user.id,
         url_id=url['id'],  
-        comment=data.comment
+        comment=data.comment,
+        archor_text=data.anchor_text
     )
     return "ok"
 
