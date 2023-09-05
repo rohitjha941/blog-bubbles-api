@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, Header
 from fastapi import HTTPException, status
 from auth import schemas, helpers, exceptions
 # from jose import JWTError, jwt
-from auth.models.all import *
+from auth.models import *
 
 router = APIRouter(
     prefix="/v1",

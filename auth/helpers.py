@@ -5,7 +5,7 @@ from jose import jwt, JWTError
 from datetime import datetime, timedelta
 from app.core.config import settings
 from fastapi import Header
-from auth.models.all import *
+from auth.models import *
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

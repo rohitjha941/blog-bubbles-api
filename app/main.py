@@ -6,6 +6,7 @@ from app.core.config import settings
 from auth.models import *
 from data.models import *
 from auth.api import v1
+from data.api import v1 as data_v1
 
 def get_application():
     _app = FastAPI(title=settings.PROJECT_NAME)
@@ -19,6 +20,7 @@ def get_application():
     )
 
     _app.include_router(v1.router)
+    _app.include_router(data_v1.router)
 
     print(settings.DATABASE_URI)
 
@@ -38,7 +40,7 @@ def get_application():
         },
         'apps': {
             'models': {
-                'models': ["auth.models.all", "data.models.all"],
+                'models': ["auth.models", "data.models"],
                 'default_connection': 'default',
             }
         }
