@@ -37,16 +37,16 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         )
         url = url.__dict__
 
-    # if(data.identifier_id != None):
-    #     comment = await Comments.create(
-    #         position_id=data.identifier_id,
-    #         user_id=user.id,
-    #         url_id=url['id'],  
-    #         comment=data.comment
-    #     )
-    #     return "ok"
+    if(data.identifier_id != None):
+        comment = await Comments.create(
+            position_id=data.identifier_id,
+            user_id=user.id,
+            url_id=url['id'],  
+            comment=data.comment
+        )
+        return "ok"
 
-    # print(data.identifier_id)
+    print(data.identifier_id)
 
     pd = await PositionalData.create(
         identifier=data.identifier,
