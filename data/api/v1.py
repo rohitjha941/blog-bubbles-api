@@ -37,18 +37,37 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         )
         url = url.__dict__
 
+    if(data.identifier_id != None):
+        comment = await Comments.create(
+            position_id=data.identifier_id,
+            user_id=user.id,
+            url_id=url['id'],  
+            comment=data.comment
+        )
+        return "ok"
+
+    print(data.identifier_id)
+
+    pd = await PositionalData.create(
+        identifier=data.identifier,
+        url_id=url['id']
+    )
+    pd = pd.__dict__
+
     c = await Comments.create(
+        position_id=pd['id'],
         user_id=user.id,
         url_id=url['id'],  
-        comment=data.comment,
-        identifier=data.identifier
+        comment=data.comment
     )
     return "ok"
 
 
-@router.get("/comments/{url_id}")
-async def comments_get(url_id: int):
-    comments = await Comments.filter(url_id=url_id)
+@router.get("/comments/{identifier_id}")
+async def comments_get(identifier_id: int):
+    pd = await PositionalData.get(id=identifier_id)
+    pd = pd.__dict__
+    comments = await Comments.filter(position_id=pd['id'])
     return comments
 
 
@@ -57,3 +76,10 @@ async def comments_delete(comment_id: int):
     comment = await Comments.get(id=comment_id)
     await comment.delete()
     return "ok"
+
+@router.get("/identifier")
+async def identifier_get(url: str):
+    url = await Urls.get(link = url)
+    url = url.__dict__
+    pd = await PositionalData.filter(url_id=url['id'])
+    return pd
