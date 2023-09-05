@@ -14,5 +14,3 @@ class PositionalDataWithCommentsSchema(BaseModel):
 
 class PositionalDataSchema(BaseModel):
     comments: str
-
-c
