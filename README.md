@@ -1,9 +1,7 @@
-# blog-bubbles-api
-
-This project was generated via [manage-fastapi](https://ycd.github.io/manage-fastapi/)! :tada:
+## Local Setup
+To set up your local development environment, follow these steps here[`docs/localEnvironmentSetup.md`](docs/localEnvironmentSetup.md)
 
 ## License
-
 This project is licensed under the terms of the MIT license.
 
 
@@ -11,6 +9,5 @@ This project is licensed under the terms of the MIT license.
 - DBML
 - Sequence Diagram
 - Readme
-- Local Setup
 - Architecture Diagram 
 - Env Vars Defination
