@@ -13,16 +13,24 @@ This document provides descriptions for the environment variables used in the co
 
 ## POSTGRES_USER
 - **Description:** Username of postgres database
-- **Example Value:** postgres
+- **Example Value:** `postgres`
 
 ## POSTGRES_PASSWORD
 - **Description:** Password of postgres database
-- **Example Value:** postgres
+- **Example Value:** `postgres`
 
 ## POSTGRES_SERVER
 - **Description:** Host address of postgres database
-- **Example Value:** localhost
+- **Example Value:** `localhost`
 
 ## POSTGRES_DB
 - **Description:** DB name of postgres database
-- **Example Value:** app
+- **Example Value:** `app`
+
+## SECERET_KEY
+- **Description:** A random string used to encrypt the JWT token
+- **Example Value:** `secret`
+
+## ALGORITHM
+- **Description:** Algorithm used to encrypt the JWT token
+- **Example Value:** `HS256`

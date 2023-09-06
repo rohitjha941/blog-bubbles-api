@@ -25,6 +25,10 @@ POSTGRES_PASSWORD=postgres
 POSTGRES_SERVER=localhost
 POSTGRES_DB=app
 
+# JWT Configuration
+SECERET_KEY="baevaefbwfbawfbwwf"
+ALGORITHM="HS256"
+
 ```
 
 ## API Server
