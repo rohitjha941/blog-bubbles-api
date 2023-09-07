@@ -76,17 +76,19 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
 
 @router.get("/comments/{identifier_id}")
 async def comments_get(identifier_id: int):
-    pd = await PositionalData.get(id=identifier_id)
-    pd = pd.__dict__
-    comments = await Comments.filter(position_id=pd['id']).values()
+    try:
+        pd = await PositionalData.get(id=identifier_id)
+        pd = pd.__dict__
+        comments = await Comments.filter(position_id=pd['id']).values()
 
-    for comment in comments:
-        user = await User.get(id=comment['user_id_id'])
-        user = user.__dict__
-        del user["password"]
-        comment['user'] = user
-    return comments
-
+        for comment in comments:
+            user = await User.get(id=comment['user_id_id'])
+            user = user.__dict__
+            del user["password"]
+            comment['user'] = user
+        return comments
+    except:
+        return []
 
 @router.delete("/comments/{comment_id}")
 async def comments_delete(comment_id: int):
@@ -103,12 +105,15 @@ async def identifier_get(url: str):
 
 @router.get("/comments_by_url")
 async def comments_by_url_get(link: str):
-    url = await Urls.get(link = link)
-    url = url.__dict__
-    comments = await Comments.filter(url_id=url['id']).values()
-    for comment in comments:
-        user = await User.get(id=comment['user_id_id'])
-        user = user.__dict__
-        del user["password"]
-        comment['user'] = user
-    return comments
+    try : 
+        url = await Urls.get(link = link)
+        url = url.__dict__
+        comments = await Comments.filter(url_id=url['id']).values()
+        for comment in comments:
+            user = await User.get(id=comment['user_id_id'])
+            user = user.__dict__
+            del user["password"]
+            comment['user'] = user
+        return comments
+    except:
+        return []
