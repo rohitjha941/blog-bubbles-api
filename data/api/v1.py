@@ -60,11 +60,21 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
 async def comments_get(identifier_id: int = None, url: str = None):
     comments = []
     if(identifier_id != None):
-        pd = await PositionalData.get(id=identifier_id)
+        pd = await PositionalData.get_or_none(id=identifier_id)
+        if(pd == None):
+            raise HTTPException(
+                status_code=404,
+                detail = [{ "msg" : "Identifier not found"}]
+            )
         pd = pd.__dict__
         comments = await Comments.filter(position_id=pd['id']).values()
     elif(url != None):
-        url = await Urls.get(link = url)
+        url = await Urls.get_or_none(link = url)
+        if(url == None):
+            raise HTTPException(
+                status_code=404,
+                detail = [{ "msg" : "Url not found"}]
+            )
         url = url.__dict__
         comments = await Comments.filter(url_id=url['id']).values()
     else:
