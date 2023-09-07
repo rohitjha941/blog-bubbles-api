@@ -33,7 +33,8 @@ This project is licensed under the terms of the MIT license.
 - [Delete Comments](docs/deleteComment.mermaid)
 
 ## Architecture Diagram
-![architectureDiagram drawio](https://github.com/rohitjha941/blog-bubbles-api/assets/33960527/f36e1a0d-a5d0-45ba-b2a1-1224ed5f85bc)
+![architectureDiagram drawio (1)](https://github.com/rohitjha941/web-whisper-api/assets/33960527/8d1ab6dd-371c-4360-9dca-495f7732e2f9)
+
 
 ## DBML File
 - [Database DBML](docs/database.dbml)
