@@ -95,8 +95,8 @@ async def identifier_get(url: str):
     return pd
 
 @router.get("/comments_by_url")
-async def comments_by_url_get(schema: schemas.UrlsSchema):
-    url = await Urls.get(link = schema.link)
+async def comments_by_url_get(link: str):
+    url = await Urls.get(link = link)
     url = url.__dict__
     comments = await Comments.filter(url_id=url['id'])
     return comments
