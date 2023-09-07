@@ -70,7 +70,7 @@ async def comments_get(identifier_id: int = None, url: str = None):
     else:
         raise HTTPException(
             status_code=400,
-            detail="Either identifier_id or url is required",
+            detail = [{ "msg" : "Either identifier_id or url is required"}]
         )
 
     for comment in comments:
