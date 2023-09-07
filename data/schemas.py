@@ -6,7 +6,7 @@ class UrlsSchema(BaseModel):
     link: str
 
 class PositionalDataWithCommentsSchema(BaseModel):
-    identifier: dict
+    identifier: Optional[dict] = None
     url: str
     comment: str
     identifier_id: Optional[int] = None

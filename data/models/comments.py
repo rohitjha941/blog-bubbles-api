@@ -2,7 +2,7 @@ from tortoise import fields
 from app.core.models import *
 
 class Comments(BaseModel):
-    position_id = fields.IntField()
+    position_id = fields.IntField(null=True)
     user_id = fields.IntField()
     url_id = fields.IntField()
     comment = fields.TextField()

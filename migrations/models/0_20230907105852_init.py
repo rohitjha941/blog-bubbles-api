@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "id" SERIAL NOT NULL PRIMARY KEY,
     "created_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
     "modified_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
-    "position_id" INT NOT NULL,
+    "position_id" INT,
     "user_id" INT NOT NULL,
     "url_id" INT NOT NULL,
     "comment" TEXT NOT NULL,
