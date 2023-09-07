@@ -62,19 +62,13 @@ async def comments_get(identifier_id: int = None, url: str = None):
     if(identifier_id != None):
         pd = await PositionalData.get_or_none(id=identifier_id)
         if(pd == None):
-            raise HTTPException(
-                status_code=404,
-                detail = [{ "msg" : "Identifier not found"}]
-            )
+            return []
         pd = pd.__dict__
         comments = await Comments.filter(position_id=pd['id']).values()
     elif(url != None):
         url = await Urls.get_or_none(link = url)
         if(url == None):
-            raise HTTPException(
-                status_code=404,
-                detail = [{ "msg" : "Url not found"}]
-            )
+            return []
         url = url.__dict__
         comments = await Comments.filter(url_id=url['id']).values()
     else:
