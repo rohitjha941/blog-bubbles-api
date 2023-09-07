@@ -7,7 +7,7 @@ class Comments(BaseModel):
     url_id = fields.IntField()
     comment = fields.TextField()
     status = fields.BooleanField(default=True)
-    archor_text = fields.TextField()
+    anchor_text = fields.TextField()
 
     def __str__(self):
         return self.comment

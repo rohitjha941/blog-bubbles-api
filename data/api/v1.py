@@ -43,7 +43,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
             user_id=user,
             url_id=url['id'],  
             comment=data.comment,
-            archor_text=data.anchor_text
+            anchor_text=data.anchor_text
         )
         return c.__dict__
 
@@ -52,7 +52,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
             user_id=user,
             url_id=url['id'],  
             comment=data.comment,
-            archor_text=data.anchor_text
+            anchor_text=data.anchor_text
         )
         return c.__dict__
     
@@ -69,7 +69,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         user_id=user,
         url_id=url['id'],  
         comment=data.comment,
-        archor_text=data.anchor_text
+        anchor_text=data.anchor_text
     )
     return c.__dict__
 
