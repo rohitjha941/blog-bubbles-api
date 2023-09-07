@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from app.core.config import settings
 
+from . import database
+
 from auth.models import *
 from data.models import *
 from auth.api import v1
@@ -25,35 +27,12 @@ def get_application():
     print(settings.DATABASE_URI)
 
 
-    DB_CONFIG = {
-        'connections': {
-            'default': {
-                'engine': 'tortoise.backends.asyncpg',
-                'credentials': {
-                    'host': 'database',
-                    'port': '5432',
-                    'user': 'postgres',
-                    'password': 'postgres',
-                    'database': 'app',
-                }
-            },
-        },
-        'apps': {
-            'models': {
-                'models': ["auth.models", "data.models"],
-                'default_connection': 'default',
-            }
-        }
-    }
-
-
-
     @_app.on_event("startup")
     async def startup_event():
         print("Starting up...")
         register_tortoise(
             _app,
-            config=DB_CONFIG,
+            config=database.DB_CONFIG,
             generate_schemas=False,
             add_exception_handlers=True,
         )
