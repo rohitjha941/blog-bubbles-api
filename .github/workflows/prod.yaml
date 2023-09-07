@@ -29,19 +29,16 @@ jobs:
         run: |
           aws ecr describe-repositories --repository-names ${{ github.event.repository.name }} || ( aws ecr create-repository --repository-name ${{ github.event.repository.name }}  && aws ecr put-lifecycle-policy --repository-name ${{ github.event.repository.name }} --lifecycle-policy-text "{\"rules\":[{\"rulePriority\":1,\"description\":\"Keep last 5 images\",\"selection\":{\"tagStatus\":\"any\",\"countType\":\"imageCountMoreThan\",\"countNumber\":5},\"action\":{\"type\":\"expire\"}}]}"  )
 
-      - run: ls
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          file: ./Dockerfile.prod
+          file: Dockerfile.prod
           context: .
           push: true
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:latest
 
       # - name: Deploy to AWS Lambda
-      #   uses: aws-actions/aws-lambda-deploy@v0.2.0
+      #   uses: int128/deploy-lambda-action@v1
       #   with:
       #     function-name: web-whispers-prod-api
       #     image-uri: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:latest
-      #     region: ap-south-1
