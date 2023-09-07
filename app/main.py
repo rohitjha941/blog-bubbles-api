@@ -26,9 +26,6 @@ def get_application():
     _app.include_router(v1.router)
     _app.include_router(data_v1.router)
 
-    print(settings.DATABASE_URI)
-
-
     @_app.on_event("startup")
     async def startup_event():
         print("Starting up...")
