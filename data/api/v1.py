@@ -5,26 +5,8 @@ from data import schemas
 from auth import helpers as auth_helpers
 from auth.models import User
 router = APIRouter(
-    prefix="/data",
+    prefix="/v1",
 )
-
-# @router.post("/url")
-# async def url_post(data: schemas.UrlsSchema):
-#     url = await Urls.create(
-#         link=data.url
-#     )
-#     return url.__dict__
-
-# @router.get("/url")
-# async def url_get():
-#     url = await Urls.all()
-#     return url
-
-# @router.get("/url/{id}")
-# async def url_get(id: int):
-#     url = await Urls.get(id=id)
-#     return url
-
 
 @router.post("/comments")
 async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Depends(auth_helpers.validateToken)):
@@ -74,21 +56,35 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
     return c.__dict__
 
 
-@router.get("/comments/{identifier_id}")
-async def comments_get(identifier_id: int):
-    try:
-        pd = await PositionalData.get(id=identifier_id)
+@router.get("/comments")
+async def comments_get(identifier_id: int = None, url: str = None):
+    comments = []
+    if(identifier_id != None):
+        pd = await PositionalData.get_or_none(id=identifier_id)
+        if(pd == None):
+            return []
         pd = pd.__dict__
         comments = await Comments.filter(position_id=pd['id']).values()
+    elif(url != None):
+        url = await Urls.get_or_none(link = url)
+        if(url == None):
+            return []
+        url = url.__dict__
+        comments = await Comments.filter(url_id=url['id']).values()
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail = [{ "msg" : "Either identifier_id or url is required"}]
+        )
 
-        for comment in comments:
-            user = await User.get(id=comment['user_id_id'])
-            user = user.__dict__
-            del user["password"]
-            comment['user'] = user
-        return comments
-    except:
-        return []
+    for comment in comments:
+        user = await User.get(id=comment['user_id_id'])
+        user = user.__dict__
+        del user["password"]
+        comment['user'] = user
+    return comments
+
+
 
 @router.delete("/comments/{comment_id}")
 async def comments_delete(comment_id: int):
@@ -104,18 +100,3 @@ async def identifier_get(link: str):
     url = url.__dict__
     pd = await PositionalData.filter(url_id=url['id'])
     return pd
-
-@router.get("/comments_by_url")
-async def comments_by_url_get(link: str):
-    try : 
-        url = await Urls.get(link = link)
-        url = url.__dict__
-        comments = await Comments.filter(url_id=url['id']).values()
-        for comment in comments:
-            user = await User.get(id=comment['user_id_id'])
-            user = user.__dict__
-            del user["password"]
-            comment['user'] = user
-        return comments
-    except:
-        return []

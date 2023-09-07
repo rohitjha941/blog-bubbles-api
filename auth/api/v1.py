@@ -1,11 +1,11 @@
-from fastapi import APIRouter, HTTPException, Depends, Header
-from fastapi import HTTPException, status
+from fastapi import APIRouter, HTTPException, Depends
+from fastapi import HTTPException
 from auth import schemas, helpers, exceptions
 # from jose import JWTError, jwt
 from auth.models import *
 
 router = APIRouter(
-    prefix="/v1",
+    prefix="/v1/auth",
 )
 
 
