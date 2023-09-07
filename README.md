@@ -20,9 +20,6 @@ To set up your local development environment, follow these steps here [`docs/loc
 ## Environments Variables
 [This](docs/environmentVarsables.md) document provides descriptions for the environment variables used in the configuration
 
-## License
-This project is licensed under the terms of the MIT license.
-
 ## Sequence Diagrams 
 - [Login](docs/login.mermaid)
 - [Register](docs/register.mermaid)
@@ -35,9 +32,11 @@ This project is licensed under the terms of the MIT license.
 ## Architecture Diagram
 ![architectureDiagram drawio (1)](https://github.com/rohitjha941/web-whisper-api/assets/33960527/8d1ab6dd-371c-4360-9dca-495f7732e2f9)
 
-
 ## OpenAPI Specification
 - [OpenAPI Specification](https://azsp2hsswytz7a7ggohlgyew7i0pfuvd.lambda-url.ap-south-1.on.aws/docs)
 
 ## DBML File
 - [Database DBML](docs/database.dbml)
+
+## License
+This project is licensed under the terms of the MIT license.
