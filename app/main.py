@@ -1,4 +1,6 @@
 from fastapi import FastAPI, Request
+from mangum import Mangum
+
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from app.core.config import settings
@@ -45,3 +47,4 @@ def get_application():
 
 
 app = get_application()
+handler = Mangum(app)
