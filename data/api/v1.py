@@ -38,23 +38,23 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         url = url.__dict__
 
     if(data.identifier_id != None):
-        comment = await Comments.create(
+        c = await Comments.create(
             position_id=data.identifier_id,
             user_id=user,
             url_id=url['id'],  
             comment=data.comment,
             anchor_text=data.anchor_text
         )
-        return "ok"
+        return c.__dict__
 
     if(data.identifier == None):
-        await Comments.create(
+        c = await Comments.create(
             user_id=user,
             url_id=url['id'],  
             comment=data.comment,
             archor_text=data.anchor_text
         )
-        return "ok"
+        return c.__dict__
     
 
     pd = await PositionalData.create(
@@ -71,7 +71,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
         comment=data.comment,
         archor_text=data.anchor_text
     )
-    return "ok"
+    return c.__dict__
 
 
 @router.get("/comments/{identifier_id}")
