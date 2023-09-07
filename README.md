@@ -14,9 +14,6 @@ Web Whisper is a free and easy-to-use extension that can help you make the most 
 - Filter comments by popularity, date, or author.
 - Receive notifications when someone comments on your text.
 
-
-
-
 ## Local Setup
 To set up your local development environment, follow these steps here [`docs/localEnvironmentSetup.md`](docs/localEnvironmentSetup.md)
 
@@ -40,6 +37,3 @@ This project is licensed under the terms of the MIT license.
 
 ## DBML File
 - [Database DBML](docs/database.dbml)
-
-# Docs 
-- Sequence Diagram
