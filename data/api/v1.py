@@ -25,7 +25,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
             user_id=user,
             url_id=url['id'],  
             comment=data.comment,
-            anchor_text=data.anchor_text
+            archor_text=data.anchor_text
         )
         return c.__dict__
 
@@ -83,6 +83,7 @@ async def comments_get(identifier_id: int = None, url: str = None):
         del user["password"]
         comment['user'] = user
     return comments
+
 
 
 @router.delete("/comments/{comment_id}")
