@@ -35,10 +35,10 @@ jobs:
           file: Dockerfile.prod
           context: .
           push: true
-          tags: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:latest
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:${{ github.sha }}
 
-      # - name: Deploy to AWS Lambda
-      #   uses: int128/deploy-lambda-action@v1
-      #   with:
-      #     function-name: web-whispers-prod-api
-      #     image-uri: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:latest
+      - name: Deploy to AWS Lambda
+        uses: int128/deploy-lambda-action@v1
+        with:
+          function-name: web-whispers-prod-api
+          image-uri: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:${{ github.sha }}
