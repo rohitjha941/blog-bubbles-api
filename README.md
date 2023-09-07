@@ -36,5 +36,8 @@ This project is licensed under the terms of the MIT license.
 ![architectureDiagram drawio (1)](https://github.com/rohitjha941/web-whisper-api/assets/33960527/8d1ab6dd-371c-4360-9dca-495f7732e2f9)
 
 
+## OpenAPI Specification
+- [OpenAPI Specification](https://azsp2hsswytz7a7ggohlgyew7i0pfuvd.lambda-url.ap-south-1.on.aws/docs)
+
 ## DBML File
 - [Database DBML](docs/database.dbml)
