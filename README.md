@@ -12,10 +12,15 @@ This project is licensed under the terms of the MIT license.
 - [Register](docs/register.mermaid)
 - [Validate Token](docs/validateToken.mermaid)
 - [Change Password](docs/changePassword.mermaid)
+- [Create Comment](docs/createComment.mermaid)
+- [Get Comments](docs/getComments.mermaid)
+- [Delete Comments](docs/deleteComment.mermaid)
+
+## Architecture Diagram
+![architectureDiagram drawio](https://github.com/rohitjha941/blog-bubbles-api/assets/33960527/f36e1a0d-a5d0-45ba-b2a1-1224ed5f85bc)
+
+## DBML File
 - [Database DBML](docs/database.dbml)
 
-
 # Docs 
-- DBML
 - Sequence Diagram
-- Architecture Diagram 
