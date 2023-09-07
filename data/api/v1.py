@@ -64,13 +64,13 @@ async def comments_get(identifier_id: int = None, url: str = None):
         if(pd == None):
             return []
         pd = pd.__dict__
-        comments = await Comments.filter(position_id=pd['id']).values()
+        comments = await Comments.filter(position_id=pd['id']).order_by("-created_at").values()
     elif(url != None):
         url = await Urls.get_or_none(link = url)
         if(url == None):
             return []
         url = url.__dict__
-        comments = await Comments.filter(url_id=url['id']).values()
+        comments = await Comments.filter(url_id=url['id']).order_by("-created_at").values()
     else:
         raise HTTPException(
             status_code=400,
