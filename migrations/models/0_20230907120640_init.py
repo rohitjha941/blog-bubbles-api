@@ -29,11 +29,11 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "created_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
     "modified_at" TIMESTAMPTZ   DEFAULT CURRENT_TIMESTAMP,
     "position_id" INT,
-    "user_id" INT NOT NULL,
     "url_id" INT NOT NULL,
     "comment" TEXT NOT NULL,
     "status" BOOL NOT NULL  DEFAULT True,
-    "archor_text" TEXT NOT NULL
+    "archor_text" TEXT NOT NULL,
+    "user_id_id" INT NOT NULL REFERENCES "user" ("id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "positionaldata" (
     "id" SERIAL NOT NULL PRIMARY KEY,

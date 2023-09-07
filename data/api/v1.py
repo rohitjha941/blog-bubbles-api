@@ -3,7 +3,7 @@ from fastapi import HTTPException, status
 from data.models import *
 from data import schemas
 from auth import helpers as auth_helpers
-
+from auth.models import User
 router = APIRouter(
     prefix="/data",
 )
@@ -40,7 +40,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
     if(data.identifier_id != None):
         comment = await Comments.create(
             position_id=data.identifier_id,
-            user_id=user.id,
+            user_id=user,
             url_id=url['id'],  
             comment=data.comment,
             anchor_text=data.anchor_text
@@ -49,7 +49,7 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
 
     if(data.identifier == None):
         await Comments.create(
-            user_id=user.id,
+            user_id=user,
             url_id=url['id'],  
             comment=data.comment,
             archor_text=data.anchor_text
@@ -63,9 +63,10 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
     )
     pd = pd.__dict__
 
+    print(pd['id'], user.id, url['id'], data.comment, data.anchor_text)
     c = await Comments.create(
         position_id=pd['id'],
-        user_id=user.id,
+        user_id=user,
         url_id=url['id'],  
         comment=data.comment,
         archor_text=data.anchor_text
@@ -77,7 +78,16 @@ async def comments_post(data: schemas.PositionalDataWithCommentsSchema, user=Dep
 async def comments_get(identifier_id: int):
     pd = await PositionalData.get(id=identifier_id)
     pd = pd.__dict__
-    comments = await Comments.filter(position_id=pd['id'])
+    comments = await Comments.filter(position_id=pd['id']).values()
+
+    for comment in comments:
+        comment.user = await User.get(id=comment.user_id_id)
+
+    for comment in comments:
+        user = await User.get(id=comment['user_id_id'])
+        user = user.__dict__
+        del user["password"]
+        comment['user'] = user
     return comments
 
 
@@ -98,5 +108,10 @@ async def identifier_get(url: str):
 async def comments_by_url_get(link: str):
     url = await Urls.get(link = link)
     url = url.__dict__
-    comments = await Comments.filter(url_id=url['id'])
+    comments = await Comments.filter(url_id=url['id']).values()
+    for comment in comments:
+        user = await User.get(id=comment['user_id_id'])
+        user = user.__dict__
+        del user["password"]
+        comment['user'] = user
     return comments

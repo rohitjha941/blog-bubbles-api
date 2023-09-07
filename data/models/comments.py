@@ -3,7 +3,7 @@ from app.core.models import *
 
 class Comments(BaseModel):
     position_id = fields.IntField(null=True)
-    user_id = fields.IntField()
+    user_id = fields.ForeignKeyField('models.User', related_name='comments')
     url_id = fields.IntField()
     comment = fields.TextField()
     status = fields.BooleanField(default=True)
