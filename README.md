@@ -12,6 +12,7 @@ This project is licensed under the terms of the MIT license.
 - [Register](docs/register.mermaid)
 - [Validate Token](docs/validateToken.mermaid)
 - [Change Password](docs/changePassword.mermaid)
+- [Database DBML](docs/database.dbml)
 
 
 # Docs 
