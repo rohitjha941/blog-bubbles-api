@@ -28,8 +28,9 @@ async def register(data: schemas.RegisterSchema):
                 "msg":"Passwords does not matches"
             }]
         )
+    name = data.email.split("@")[0]
     user = await User.create(
-        email=data.email, password=helpers.generateHash(data.password1)
+        email=data.email, password=helpers.generateHash(data.password1), name=name
     )
     return helpers.returnUser(user)
 
