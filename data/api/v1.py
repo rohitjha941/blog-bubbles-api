@@ -81,9 +81,6 @@ async def comments_get(identifier_id: int):
     comments = await Comments.filter(position_id=pd['id']).values()
 
     for comment in comments:
-        comment.user = await User.get(id=comment.user_id_id)
-
-    for comment in comments:
         user = await User.get(id=comment['user_id_id'])
         user = user.__dict__
         del user["password"]
