@@ -97,8 +97,10 @@ async def comments_delete(comment_id: int):
     return "ok"
 
 @router.get("/identifier")
-async def identifier_get(url: str):
-    url = await Urls.get(link = url)
+async def identifier_get(link: str):
+    url = await Urls.get_or_none(link = link)
+    if  url == None:
+        return []
     url = url.__dict__
     pd = await PositionalData.filter(url_id=url['id'])
     return pd
