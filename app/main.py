@@ -1,4 +1,6 @@
 from fastapi import FastAPI, Request
+from mangum import Mangum
+
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from app.core.config import settings
@@ -24,9 +26,6 @@ def get_application():
     _app.include_router(v1.router)
     _app.include_router(data_v1.router)
 
-    print(settings.DATABASE_URI)
-
-
     @_app.on_event("startup")
     async def startup_event():
         print("Starting up...")
@@ -45,3 +44,4 @@ def get_application():
 
 
 app = get_application()
+handler = Mangum(app)
