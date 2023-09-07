@@ -33,7 +33,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: Dockerfile.prod
+          context: ./Dockerfile.prod
           push: true
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ github.event.repository.name }}:latest
 
