@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "url_id" INT NOT NULL,
     "comment" TEXT NOT NULL,
     "status" BOOL NOT NULL  DEFAULT True,
-    "archor_text" TEXT NOT NULL,
+    "anchor_text" TEXT NOT NULL,
     "user_id_id" INT NOT NULL REFERENCES "user" ("id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "positionaldata" (
