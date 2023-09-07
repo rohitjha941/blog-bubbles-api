@@ -38,3 +38,13 @@ After installing the prerequisites, run the following commands from the root dir
 ```sh
 docker-compose up
 ```
+
+This will start the API server at [http://localhost:8000](http://localhost:8000).
+
+## Rebuilding the API Server
+
+If you make changes to the API server code, you will need to rebuild the Docker image. To do this, run the following command:
+
+```sh
+docker-compose up -d --build
+```
