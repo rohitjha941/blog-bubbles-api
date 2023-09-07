@@ -5,6 +5,7 @@ graph TD
     C --> E[Return loginException]
     D --> |Password Match| F[Return User Data]
     D --> |Password Mismatch| G[Throw loginException]
+    F --> H[Return User Data]
 
 style A fill:#BBF,stroke:#333,stroke-width:2px
 style B fill:#BBF,stroke:#333,stroke-width:2px

@@ -8,7 +8,6 @@ To set up your local development environment, follow these steps here [`docs/loc
 This project is licensed under the terms of the MIT license.
 
 ## Sequence Diagrams 
-
 - [Login](docs/login.mermaid)
 - [Register](docs/register.mermaid)
 - [Validate Token](docs/validateToken.mermaid)
@@ -18,6 +17,4 @@ This project is licensed under the terms of the MIT license.
 # Docs 
 - DBML
 - Sequence Diagram
-- Readme
 - Architecture Diagram 
-- Env Vars Defination
