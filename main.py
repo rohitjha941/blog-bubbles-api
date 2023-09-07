@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from app.core.config import settings
 
-from . import database
+from .app import database
 
 from auth.models import *
 from data.models import *
